@@ -3,10 +3,6 @@ A Decentralised Academic Certificate Verification Framework Integrating Blockcha
 
 Tamper-evident credential authentication at scale — no institutional participation required.
 
-
-Status: Paper under review at Future Generation Computer Systems
-
-
 Overview
 EduChain is an end-to-end academic certificate verification system that integrates three complementary technologies:
 
