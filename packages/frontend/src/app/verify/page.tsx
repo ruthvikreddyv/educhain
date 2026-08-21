@@ -58,8 +58,6 @@ export default function VerifyPage() {
 
       setStatus("loading");
       setTxHash(null);
-
-      // IMPORTANT: pass args here, not in the hook
 const result = await refetch();
       const value = result.data as
         | [boolean, string, string, `0x${string}`]
