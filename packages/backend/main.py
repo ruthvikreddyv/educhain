@@ -24,24 +24,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load Pinata keys from environment
 PINATA_API_KEY = os.getenv("PINATA_API_KEY")
 PINATA_SECRET_KEY = os.getenv("PINATA_SECRET_KEY")
 
 BLOCKCHAIN_SCRIPT = "../blockchain/scripts/register.js"
 
-# ---------------------------------------------------
 # Health Check
-# ---------------------------------------------------
 
 @app.get("/health")
 async def health():
     return {"status": "ok", "service": "educhain-backend"}
 
 
-# ---------------------------------------------------
 # Blockchain Registration
-# ---------------------------------------------------
 
 def register_on_blockchain(doc_hash, ipfs_cid):
     try:
