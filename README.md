@@ -12,6 +12,8 @@ EduChain is an end-to-end academic certificate verification framework integratin
 
 A key contribution is **holder-initiated post-issuance registration**, enabling legacy certificates to be registered and verified without requiring the issuing institution to participate.
 
+
+
 ## Key Results
 
 | Metric                     |                          Result |
