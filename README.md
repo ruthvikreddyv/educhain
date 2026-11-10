@@ -6,6 +6,7 @@
 EduChain is an end-to-end academic certificate verification framework integrating:
 
 * **Blockchain** — immutable SHA-256 certificate-hash registration and verification.
+* 
 * **NLP** — automated certificate-field extraction using spaCy with a BERT fallback.
 * **IPFS** — content-addressed certificate storage.
 
