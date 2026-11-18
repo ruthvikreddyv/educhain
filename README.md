@@ -3,6 +3,7 @@
 **Tamper-evident academic credential verification using Blockchain, NLP, and IPFS.**
 ## Overview
 
+
 EduChain is an end-to-end academic certificate verification framework integrating:
 
 * **Blockchain** — immutable SHA-256 certificate-hash registration and verification.
