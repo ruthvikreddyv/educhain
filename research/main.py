@@ -3,6 +3,8 @@ No credential uploads, private data, externally supplied trust flags or issuance
 """
 from dataclasses import asdict
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
+from educhain.web import HTML
 from educhain.benchmark import generate
 from educhain.engine import verify, counterfactual, choose_action, Action, Evidence
 
@@ -16,7 +18,10 @@ DESCRIPTIONS = {
     "issuer_fraud":"Authenticated registry disagrees with the identity claim",
     "revoked":"Authenticated registry reports revocation",
 }
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
+def homepage():
+    return HTML
+
 @app.get("/health")
 def health():
     return {"service":"EduChain","mode":"synthetic-research-demo","status":"ok"}
