@@ -1,8 +1,8 @@
-# EduChain — Provenance-aware counterfactual credential verification
+# EduChain — Academic credential verification
 
 ## Hosted EduChain application
 
-- **Web application deployment:** [EduChain](https://educhain-82l0vlvvu-reddyruthvik679-8957s-projects.vercel.app) — production build submitted; readiness pending verification.
+- **Web application deployment:** [EduChain](https://educhain-hnv1kfzjm-reddyruthvik679-8957s-projects.vercel.app) — production build submitted; readiness pending verification.
 - **Document-processing backend:** [API health](https://educhain-backend-reddyruthvik679-8957s-projects.vercel.app/health) · [API docs](https://educhain-backend-reddyruthvik679-8957s-projects.vercel.app/docs) — deployed, health endpoint verified.
 
 The hosted application uses the original Next.js frontend and a stateless FastAPI document-processing service. It processes text-based PDFs up to 4 MB/30 pages, extracts labelled academic fields, calculates SHA-256 fingerprints, and supports wallet-authorized registry transactions when configured. It does not host the research dashboard.
