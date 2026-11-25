@@ -45,12 +45,11 @@ export default function Home() {
           <h1 className="mb-4 text-4xl font-black leading-tight tracking-tight md:text-6xl">
             Academic credentials,
             <span className="block bg-gradient-to-r from-indigo-300 via-purple-300 to-sky-300 bg-clip-text text-transparent">
-              verified on-chain.
+              verification made transparent.
             </span>
           </h1>
           <p className="mb-8 max-w-xl text-base text-slate-300 md:text-lg">
-            EduChain turns PDFs into tamper-proof, instantly verifiable credentials
-            using Ethereum, IPFS, and AI document analysis.
+            Prepare academic PDFs, generate document fingerprints, and check records against a configured Ethereum registry.
           </p>
 
           <div className="mb-10 flex flex-col items-center gap-4 sm:flex-row sm:items-stretch">
@@ -72,10 +71,10 @@ export default function Home() {
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Live Sepolia testnet ready
+              Sepolia-compatible registry
             </div>
-            <div>AI-powered forgery detection</div>
-            <div>IPFS decentralized storage</div>
+            <div>Document field extraction</div>
+            <div>Wallet-authorized registration</div>
           </div>
         </motion.div>
 
@@ -89,23 +88,23 @@ export default function Home() {
           {[
             {
               icon: Shield,
-              title: "Tamper-proof",
-              desc: "Each credential is anchored on Ethereum so any modification is instantly detectable.",
+              title: "Document fingerprint",
+              desc: "Compare exact document hashes with a registered record.",
             },
             {
               icon: Brain,
-              title: "AI document check",
-              desc: "NLP models parse transcripts and flag suspicious layouts or text edits.",
+              title: "Document processing",
+              desc: "Extract labelled fields from text-based PDFs.",
             },
             {
               icon: FileText,
-              title: "IPFS storage",
-              desc: "Certificates are stored on IPFS with content-addressed CIDs, not centralized servers.",
+              title: "IPFS references",
+              desc: "Register an independently secured document CID; no automatic public upload.",
             },
             {
               icon: Link2,
               title: "One-click verify",
-              desc: "Employers and universities can verify authenticity from any device in seconds.",
+              desc: "Check registration and revocation status when the registry is configured.",
             },
           ].map((item, i) => (
             <motion.div
