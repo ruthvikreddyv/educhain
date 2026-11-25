@@ -1,5 +1,9 @@
 # EduChain — Provenance-aware counterfactual credential verification
 
+**Live research demo:** [EduChain](https://educhain-blush.vercel.app) · [API documentation](https://educhain-blush.vercel.app/docs) · [Backend health](https://educhain-blush.vercel.app/health)
+
+The hosted version runs the Python provenance-aware research engine on six synthetic scenarios, with an interactive evidence ledger, counterfactual interventions, adaptive verification actions and browser-local SHA-256 hashing. It does not perform real credential issuance, issuer authentication, IPFS upload or on-chain verification. The legacy application remains in the repository for local development. This deployment was uploaded from source (Vercel GitHub integration is not linked), so future commits require a redeployment until the integration is configured.
+
 EduChain now includes a v2 research prototype for reasoning over credential evidence, provenance, contradictions, counterfactual removals and adaptive verification actions. The legacy blockchain/NLP/IPFS application remains in the repository.
 
 ## EduChain v2 research prototype
