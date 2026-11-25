@@ -41,6 +41,9 @@ contract CertificateRegistry is AccessControl {
         string calldata ipfsCid,
         string calldata studentId
     ) external onlyRole(ISSUER_ROLE) {
+        require(docHash != bytes32(0), "Invalid hash");
+        require(bytes(ipfsCid).length > 0, "Missing CID");
+        require(certificates[docHash].issuer == address(0), "Already registered");
         certificates[docHash] = Certificate({
             ipfsCid: ipfsCid,
             studentId: studentId,
@@ -52,6 +55,8 @@ contract CertificateRegistry is AccessControl {
     }
 
     function revokeCertificate(bytes32 docHash) external onlyRole(ISSUER_ROLE) {
+        require(certificates[docHash].issuer == msg.sender, "Not original issuer");
+        require(!certificates[docHash].revoked, "Already revoked");
         certificates[docHash].revoked = true;
         emit CertificateRevoked(docHash, msg.sender);
     }
