@@ -1,6 +1,8 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+from pathlib import Path
+import json
 import hashlib
 import io
 import requests
@@ -90,7 +92,9 @@ async def upload_certificate(file: UploadFile = File(...)):
             "https://api.pinata.cloud/pinning/pinFileToIPFS",
             files=files,
             headers=headers,
+            timeout=30,
         )
+        response.raise_for_status()
 
         ipfsCid = response.json()["IpfsHash"]
 
@@ -108,8 +112,7 @@ async def upload_certificate(file: UploadFile = File(...)):
         except Exception as e:
             print("PDF extraction error:", e)
 
-        print("=== PDF TEXT SAMPLE ===")
-        print(text[:1000])
+        # Never log credential contents.
 
         # ---------------------------------------------------
         # Detect document type
@@ -257,13 +260,18 @@ async def upload_certificate(file: UploadFile = File(...)):
 # ---------------------------------------------------
 
 @app.get("/verify/{hash}")
-async def verify_certificate(hash: str):
+def verify_certificate(hash: str):
+    value = hash.removeprefix("0x")
+    if not re.fullmatch(r"[0-9a-fA-F]{64}", value):
+        raise HTTPException(status_code=422, detail="Expected SHA-256 hex digest")
+    script = Path(__file__).resolve().parent.parent / "blockchain" / "scripts" / "verify-read.mjs"
+    try:
+        result = subprocess.run(["node", str(script), "0x"+value], capture_output=True, text=True, timeout=20, check=True)
+        record = json.loads(result.stdout)
+        return {"hash":value, "verified":bool(record["active"]), "scope":"on-chain registration and revocation only", "record":record}
+    except (OSError, subprocess.SubprocessError, ValueError, KeyError):
+        raise HTTPException(status_code=503, detail="Registry verification unavailable; do not assume authenticity")
 
-    return {
-        "hash": hash,
-        "verified": True,
-        "message": "Certificate exists on blockchain (mock verification)."
-    }
 issued_db = []
 
 @app.post("/store-issued")
