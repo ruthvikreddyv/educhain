@@ -1,4 +1,23 @@
-# EduChain: A Decentralised Academic Certificate Verification Framework
+# EduChain — Provenance-aware counterfactual credential verification
+
+EduChain now includes a v2 research prototype for reasoning over credential evidence, provenance, contradictions, counterfactual removals and adaptive verification actions. The legacy blockchain/NLP/IPFS application remains in the repository.
+
+## EduChain v2 research prototype
+
+Start with [research/README.md](research/README.md) for architecture, limitations and reproducible experiments.
+
+```bash
+cd research
+python3 -m unittest discover -s tests -v
+python3 -m educhain.evaluate --n 300 --seed 42
+python3 -m educhain.study --n 300 --seeds 11 22 33 44 55
+```
+
+The current v2 engine is a conservative rule-based research prototype, not a trained graph neural network or production authenticator. Its synthetic benchmark and diagnostic calibration are mechanism tests only; they do not establish real-world accuracy or novelty. Real credentials and independent issuer verification, trained baselines, and a leakage-controlled evaluation are needed before journal submission. The existing results below describe the legacy project as previously reported, not the v2 system; they have not been independently revalidated in this update.
+
+---
+
+## Legacy EduChain implementation
 
 **Tamper-evident academic credential verification using Blockchain, NLP, and IPFS.**
 ## Overview
