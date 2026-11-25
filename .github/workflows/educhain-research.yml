@@ -1,0 +1,32 @@
+name: EduChain research checks
+on:
+  push:
+    paths:
+      - 'research/**'
+      - '.github/workflows/educhain-research.yml'
+  pull_request:
+    paths:
+      - 'research/**'
+      - '.github/workflows/educhain-research.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: research
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -v
+      - run: python -m educhain.evaluate --n 60 --seed 42
+      - run: python -m educhain.study --n 60 --seeds 11 22
+      - run: python -m pip install -r requirements.txt
+      - run: python -m educhain.plots
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-research-results
+          path: research/outputs/
